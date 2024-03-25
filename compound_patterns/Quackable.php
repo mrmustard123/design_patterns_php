@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * File: Quackable
+ * Author: Leonardo G. Tellez Saucedo <leonardo616@gmail.com>
+ * Date: 14 mar. de 2024 19:43:23
+ * User: user
+ */
+
+namespace compound_patterns;
+
+interface Quackable{
+    
+    public function quack():void;
+    
+}
+
