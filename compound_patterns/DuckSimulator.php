@@ -29,17 +29,28 @@ class DuckSimulator{
         
         if($function=='simulate'){
             
-            $count = count($arguments);
+            $object = $arguments[0];
+                                    
+            $reflect = new \ReflectionClass($object);
             
-            switch ($count){
-                case 0:{                    
-                    $mallarDuck = new QuackCounter(new MallarDuck());
-                    $redheadDuck = new QuackCounter(new RedheadDuck());
-                    $duckCall = new QuackCounter(new DuckCall());
-                    $rubberDuck = new QuackCounter(new RubberDuck());
+            /*A diferencia de los anteriores ejercicios, el polimorfismo no se da
+            por la cantidad de argumentos en el prototipo sino por la clase de objeto
+            que es el argumento. En java el polimorfismo es mas claro:
+            void simulate(AbstractDuckFactory duckFactory){...
+            void simulate(Quackable duck){...
+             */
+            
+            $classname =$reflect->getShortName();
+                                                                        
+            if($classname === 'CountingDuckFactory'){ 
+                    $duckFactory = $object;
+                    $mallarDuck =  $duckFactory->createMallarDuck();
+                    $redheadDuck = $duckFactory->createRedheadDuck();
+                    $duckCall = $duckFactory->createDuckCall();
+                    $rubberDuck = $duckFactory->createRubberDuck();
                     $gooseDuck = new GooseAdapter(new Goose());
                     echo 'Duck Simulator:<br/>';
-                    $this->simulate($mallarDuck);  /*Se llama recursivamente al metodo sobreescrito (1 argumento)*/
+                    $this->simulate($mallarDuck);  /*Se llama recursivamente al metodo sobrecargado*/
                     $this->simulate($redheadDuck);
                     $this->simulate($duckCall);
                     $this->simulate($rubberDuck);    
@@ -47,38 +58,16 @@ class DuckSimulator{
                     
                     echo 'The ducks quacked ', QuackCounter::getQuacks().' times<br/>';
                     
-                    break;
-                }
-                case 1:{   /*este seria el metodo sobreescrito*/
-                    $duck = $arguments[0]; /*Devuelve un objeto de clase "Quackable"*/
-                    $duck->quack();
-                    break;
-                }                                
-            }                                    
+            }
+            else{   /*este seria el metodo sobrecargado*/
+                
+                 /*Devuelve un objeto de clase "Quackable"*/
+                $duck = $arguments[0];                
+                $duck->quack();
+
+            }                 
         }  
     }
- /*   NO SE PUEDE DUPLICAR METODO EN PHP
-    public function simulate(){
-        $mallarDuck = new MallarDuck();
-        $redheadDuck = new RedheadDuck();
-        $duckCall = new DuckCall();
-        $rubberDuck = new RubberDuck();
-        
-        echo '<br/>Duck Simulator';
-        
-        $this->simulate($mallarDuck);
-        $this->simulate($redheadDuck);
-        $this->simulate($duckCall);
-        $this->simulate($rubberDuck);
-                
-    }
-    
-    public function simulate(Quackable $duck){
-        $duck->quack();
-        
-    }
-    
-    */
     
 }//end class DuckSimulator
 

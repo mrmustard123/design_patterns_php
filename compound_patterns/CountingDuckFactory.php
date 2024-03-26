@@ -9,27 +9,33 @@
 
 namespace compound_patterns;
 
+include 'AbstractDuckFactory.php';
+
 /*Now let's create the factory we really want */
 class CountingDuckFactory extends AbstractDuckFactory{
     
+    public function __construct() {
+        //
+    }
+    
     
     public function createMallarDuck(): Quackable{
-        return new MallarDuck();
+        return  new QuackCounter(new MallarDuck());
     }
     
     public function createRedHeadDuck(): Quackable{
-        return new RedHeadDuck();
+        return  new QuackCounter(new RedHeadDuck());
     }
     
     public function createDuckCall(): Quackable{
-        return new DuckCall();
+        return  new QuackCounter(new DuckCall());
     }
     
     
-    public function createRubberDuck(){
-        return new RubberDuck();
+    public function createRubberDuck(): Quackable{
+        return  new QuackCounter(new RubberDuck());
     }
-        
+                     
 }
 
 /*Each method wraps the Quackable with the quack counting decorator. The

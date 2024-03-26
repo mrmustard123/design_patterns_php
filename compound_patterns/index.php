@@ -9,6 +9,7 @@
 namespace compound_patterns;
 
 include 'DuckSimulator.php';
+include 'CountingDuckFactory.php';
 
 
 $simulator = new DuckSimulator();
