@@ -37,13 +37,16 @@ class DuckSimulator1{
             
             switch ($count){
                 case 0:{                    
+                    /*QuackCounter es un ejemplo de DECORATOR*/
                     $mallarDuck = new QuackCounter(new MallarDuck());
                     $redheadDuck = new QuackCounter(new RedheadDuck());
                     $duckCall = new QuackCounter(new DuckCall());
                     $rubberDuck = new QuackCounter(new RubberDuck());
+                    /*Este es un ejemplo de ADAPTER*/
                     $gooseDuck = new GooseAdapter(new Goose());
                     echo 'Duck Simulator:<br/>';
-                    $this->simulate($mallarDuck);  /*Se llama recursivamente al metodo sobreescrito (1 argumento)*/
+                    /*Se llama recursivamente al metodo sobrecargado (1 argumento)*/                    
+                    $this->simulate($mallarDuck);  
                     $this->simulate($redheadDuck);
                     $this->simulate($duckCall);
                     $this->simulate($rubberDuck);    
@@ -53,7 +56,8 @@ class DuckSimulator1{
                     
                     break;
                 }
-                case 1:{   /*este seria el metodo sobreescrito*/
+                case 1:{   
+                    /*este seria el metodo sobrecargado*/
                     $duck = $arguments[0]; /*Devuelve un objeto de clase "Quackable"*/
                     $duck->quack();
                     break;
