@@ -15,6 +15,7 @@ include 'DuckCall.php';
 include 'goose.php';
 include 'gooseadapter.php';
 include 'QuackCounter.php';
+include 'Flock.php';
 
 
 class DuckSimulator{
@@ -40,7 +41,6 @@ class DuckSimulator{
             void simulate(Quackable duck){...
              */
             
-            $classname =$reflect->getShortName();
             
             /*
             $parentclass = $reflect->getParentClass();//AbstrackDuckFactory
@@ -48,33 +48,64 @@ class DuckSimulator{
             Para usar la clase de argumento "AbstrackDuckFactory" o "Quackable"
             como en el ejemplo de java, pero es mas complicado el codigo.
             */
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            $classname =$reflect->getShortName();
+            
+
              
               
             switch ($classname){
                 case 'CountingDuckFactory': { 
-                    $duckFactory = $object;
-                    $mallarDuck =  $duckFactory->createMallarDuck();
+                    $duckFactory = $object;                    
                     $redheadDuck = $duckFactory->createRedheadDuck();
                     $duckCall = $duckFactory->createDuckCall();
                     $rubberDuck = $duckFactory->createRubberDuck();
                     /*Este es un ejemplo de ADAPTER*/
                     $gooseDuck = new GooseAdapter(new Goose()); 
-                    echo 'Duck Simulator:<br/>';
-                    /*Se llama recursivamente al metodo sobrecargado*/
-                    $this->simulate($mallarDuck);  
-                    $this->simulate($redheadDuck);
-                    $this->simulate($duckCall);
-                    $this->simulate($rubberDuck);    
-                    $this->simulate($gooseDuck);
+                    echo 'Duck Simulator: with Composite - Flocks<br/>';
                     
+                    $flockOfDucks = new Flock();
+
+                    $flockOfDucks->add($redheadDuck);
+                    $flockOfDucks->add($duckCall);
+                    $flockOfDucks->add($rubberDuck);
+                    $flockOfDucks->add($gooseDuck);
+                    
+                    $flockOfMallards = new Flock();
+                    
+                    $mallarOne = $duckFactory->createMallarDuck();
+                    $mallarTwo = $duckFactory->createMallarDuck();
+                    $mallarThree = $duckFactory->createMallarDuck();
+                    $mallarFour = $duckFactory->createMallarDuck();
+                                        
+                    $flockOfMallards->add($mallarOne);
+                    $flockOfMallards->add($mallarTwo);
+                    $flockOfMallards->add($mallarThree);
+                    $flockOfMallards->add($mallarFour);
+                    
+                    $flockOfDucks->add($flockOfMallards);
+                    
+                    echo 'Duck Simulator: Whole Flock Simulation<br/>';
+                    $this->simulate($flockOfDucks);
+                    
+                    echo 'Duck Simulator: Mallar Flock Simulation<br/>';
+                                        
                     echo 'The ducks quacked ', QuackCounter::getQuacks().' times<br/>';
                     
                     break;
                     
                 }
                 case 'QuackCounter': {   
-                    /*este seria el metodo sobrecargado*/
-                
+                    /*este seria el metodo sobrecargado*/                
                     /*Devuelve un objeto de clase "Quackable"*/
                    $duck = $arguments[0];                
                    $duck->quack();
