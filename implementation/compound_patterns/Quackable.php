@@ -9,7 +9,7 @@
 
 namespace compound_patterns;
 
-interface Quackable{
+interface Quackable extends QuackObservable{
     
     public function quack():void;
     

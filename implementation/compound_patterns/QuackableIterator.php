@@ -9,6 +9,8 @@
 
 namespace compound_patterns;
 
+include 'Iterator.php';
+
 
 class QuackableIterator implements Iterator{
     

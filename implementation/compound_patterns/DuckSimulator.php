@@ -40,31 +40,32 @@ class DuckSimulator{
             void simulate(AbstractDuckFactory duckFactory){...
             void simulate(Quackable duck){...
              */
-            
-            
+                        
             /*
             $parentclass = $reflect->getParentClass();//AbstrackDuckFactory
             $interfacesnames = $reflect->getInterfaces(); //Quackable
             Para usar la clase de argumento "AbstrackDuckFactory" o "Quackable"
             como en el ejemplo de java, pero es mas complicado el codigo.
             */
-
+            
+            $parentclass = $reflect->getParentClass();
+            
+                        
+            if(!$parentclass){
+                $interfacesnames = $reflect->getInterfaceNames(); 
+                $interfaces = $reflect->getInterfaces();
+                //Quackable
+                $interfacename = $interfacesnames[0];
+                $interface = $interfaces[$interfacename];
+                $classname = $interface->getShortName();    
+            }else{                       
+                //AbstrackDuckFactory
+                $classname =$parentclass->getShortName();  
+            }
             
             
-            
-            
-            
-            
-            
-            
-            
-            $classname =$reflect->getShortName();
-            
-
-             
-              
             switch ($classname){
-                case 'CountingDuckFactory': { 
+                case 'AbstractDuckFactory': { 
                     $duckFactory = $object;                    
                     $redheadDuck = $duckFactory->createRedheadDuck();
                     $duckCall = $duckFactory->createDuckCall();
@@ -98,13 +99,13 @@ class DuckSimulator{
                     $this->simulate($flockOfDucks);
                     
                     echo 'Duck Simulator: Mallar Flock Simulation<br/>';
-                                        
+                    $this->simulate($flockOfMallards);                    
                     echo 'The ducks quacked ', QuackCounter::getQuacks().' times<br/>';
                     
                     break;
                     
                 }
-                case 'QuackCounter': {   
+                case 'Quackable': {   
                     /*este seria el metodo sobrecargado*/                
                     /*Devuelve un objeto de clase "Quackable"*/
                    $duck = $arguments[0];                

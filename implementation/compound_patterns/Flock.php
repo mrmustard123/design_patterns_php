@@ -9,6 +9,8 @@
 
 namespace compound_patterns;
 
+include 'QuackableIterator.php';
+
 class Flock implements Quackable{
     
     
