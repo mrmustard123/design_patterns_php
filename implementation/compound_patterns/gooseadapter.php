@@ -16,8 +16,11 @@ class GooseAdapter implements Quackable{
     
     public Goose $goose;
     
+    protected Observable $observable;    
+    
     public function __construct(){
         $this->goose = new Goose();
+        $this->observable= new Observable($this);
     }
 
 
@@ -30,12 +33,18 @@ class GooseAdapter implements Quackable{
     public function setGoose(Goose $goose): void
     {
         $this->goose = $goose;
+    }            
+    
+    public function registerObserver(Observer $observer): void {
+        $this->observable->registerObserver($observer);
+    }
+    
+    public function notifyObservers(): void{
+        $this->observable->notifyObservers();
     }    
     
     public function quack():void {
         $this->goose->honk();
-    }
-    
-    
-    
+        $this->notifyObservers();
+    }           
 }

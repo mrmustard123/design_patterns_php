@@ -16,7 +16,6 @@ include 'goose.php';
 include 'gooseadapter.php';
 include 'QuackCounter.php';
 include 'Flock.php';
-include 'Quackologist.php';
 
 
 class DuckSimulator{
@@ -73,7 +72,7 @@ class DuckSimulator{
                     $rubberDuck = $duckFactory->createRubberDuck();
                     /*Este es un ejemplo de ADAPTER*/
                     $gooseDuck = new GooseAdapter(new Goose()); 
-                    //echo 'Duck Simulator: with Composite - Flocks<br/>';
+                    echo 'Duck Simulator: with Composite - Flocks<br/>';
                     
                     $flockOfDucks = new Flock();
 
@@ -81,7 +80,7 @@ class DuckSimulator{
                     $flockOfDucks->add($duckCall);
                     $flockOfDucks->add($rubberDuck);
                     $flockOfDucks->add($gooseDuck);
-                    /*
+                    
                     $flockOfMallards = new Flock();
                     
                     $mallarOne = $duckFactory->createMallarDuck();
@@ -94,19 +93,15 @@ class DuckSimulator{
                     $flockOfMallards->add($mallarThree);
                     $flockOfMallards->add($mallarFour);
                     
-                    $flockOfDucks->add($flockOfMallards);  */
-                    
-                    echo 'Duck Simulator: With Observer<br/>';
-                    $quackologist = new Quackologist();
-                    $flockOfDucks->registerObserver($quackologist);
+                    $flockOfDucks->add($flockOfMallards);
                     
                     echo 'Duck Simulator: Whole Flock Simulation<br/>';
                     $this->simulate($flockOfDucks);
-                    /*
+                    
                     echo 'Duck Simulator: Mallar Flock Simulation<br/>';
-                    $this->simulate($flockOfMallards);                */    
+                    $this->simulate($flockOfMallards);                    
                     echo 'The ducks quacked ', QuackCounter::getQuacks().' times<br/>';
-                                                           
+                    
                     break;
                     
                 }

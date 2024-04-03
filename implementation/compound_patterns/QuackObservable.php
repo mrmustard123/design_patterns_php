@@ -11,7 +11,7 @@ namespace compound_patterns;
 
 interface QuackObservable{
     
-    public function registerObserver($observer): void;
+    public function registerObserver(Observer $observer): void;
     public function notifyObservers(): void;       
     
 }

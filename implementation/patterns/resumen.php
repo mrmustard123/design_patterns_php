@@ -9,6 +9,7 @@
  * el sistema.
  * FACTORY: Sirve para crear instancias y encapsular atributos y comportamientos
  * comunes.
+ * ITERATOR: Sirve para iterar una lista o coleccion de objetos.
  * ADAPTER: Sirve para adaptar un objeto a otro objeto
  * FACADE: Sirve para encapsular varias funcionalidades en una sola para
  * simplificar.

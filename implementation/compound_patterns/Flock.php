@@ -12,12 +12,13 @@ namespace compound_patterns;
 include 'QuackableIterator.php';
 
 class Flock implements Quackable{
-    
-    
+        
     public array $quackers;
+    protected Observable $observable;    
     
     public function __construct() {
         $this->quackers = [];
+        $this->observable= new Observable($this);
     }
     
     public function add(Quackable $quacker){
@@ -25,6 +26,14 @@ class Flock implements Quackable{
         array_push($this->quackers, $quacker);
         
     }
+    
+    public function registerObserver(Observer $observer): void {
+        $this->observable->registerObserver($observer);
+    }
+    
+    public function notifyObservers(): void{
+        $this->observable->notifyObservers();
+    }     
     
     public function quack(): void{
         

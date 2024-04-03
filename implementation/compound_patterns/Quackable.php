@@ -9,6 +9,8 @@
 
 namespace compound_patterns;
 
+include 'QuackObservable.php';
+
 interface Quackable extends QuackObservable{
     
     public function quack():void;
