@@ -8,7 +8,8 @@
  */
 
 $my_array = array('Andy', 'Bertha', 'Charles', 'Diana');
-echo sizeof($my_array) . "\n";
+var_dump($my_array);
+echo "<br/>";
 $my_array = array_diff($my_array, array('Charles'));
-echo sizeof($my_array);
+var_dump($my_array);
 
