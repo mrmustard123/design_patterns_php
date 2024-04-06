@@ -15,7 +15,7 @@ include 'Iterator.php';
 class QuackableIterator implements Iterator{
     
     protected array $items;
-    protected int $position;    
+    public int $position;    
     
        
     public function __construct() {

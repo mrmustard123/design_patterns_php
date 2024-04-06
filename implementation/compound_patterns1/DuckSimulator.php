@@ -105,7 +105,7 @@ class DuckSimulator{
                     /*
                     echo 'Duck Simulator: Mallar Flock Simulation<br/>';
                     $this->simulate($flockOfMallards);                */    
-                    echo 'The ducks quacked ', QuackCounter::getQuacks().' times<br/>';
+                    //echo 'The ducks quacked ', QuackCounter::getQuacks().' times<br/>';
                                                            
                     break;
                     

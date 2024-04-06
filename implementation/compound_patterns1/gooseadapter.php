@@ -16,7 +16,7 @@ class GooseAdapter implements Quackable{
     
     public Goose $goose;
     
-    protected Observable $observable;    
+    public Observable $observable;    
     
     public function __construct(){
         $this->goose = new Goose();

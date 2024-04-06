@@ -11,7 +11,7 @@ namespace compound_patterns;
 
 class RubberDuck implements Quackable{
     
-    protected Observable $observable;
+    public Observable $observable;
     
     public function __construct() {
         $this->observable= new Observable($this);

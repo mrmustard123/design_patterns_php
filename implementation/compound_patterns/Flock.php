@@ -14,11 +14,11 @@ include 'QuackableIterator.php';
 class Flock implements Quackable{
         
     public array $quackers;
-    protected Observable $observable;    
+//    public Observable $observable;    
     
     public function __construct() {
         $this->quackers = [];
-        $this->observable= new Observable($this);
+        //$this->observable= new Observable($this);
     }
     
     public function add(Quackable $quacker){
@@ -28,11 +28,20 @@ class Flock implements Quackable{
     }
     
     public function registerObserver(Observer $observer): void {
-        $this->observable->registerObserver($observer);
+        //$this->observable->registerObserver($observer);        
+        $iterator = new QuackableIterator();
+        $iterator->setItems($this->quackers);
+        //$iterator->setPosition(0);//por default es 0
+        
+        while($iterator->hasNext()){
+            $quacker= $iterator->next();
+            //$quacker->observable->registerObserver($observer);
+            $quacker->duck->observable->registerObserver($observer); //si no es quackcounter no tiene duck como el gooseadapter
+        } 
     }
     
     public function notifyObservers(): void{
-        $this->observable->notifyObservers();
+       // $this->observable->notifyObservers();
     }     
     
     public function quack(): void{

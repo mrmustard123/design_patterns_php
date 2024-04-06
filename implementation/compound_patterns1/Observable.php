@@ -11,16 +11,17 @@ namespace compound_patterns;
 
 class Observable implements QuackObservable{
     
-    protected array $observers;    
-    protected QuackObservable $duck;
+    public array $observers;    
+    public QuackObservable $duck;
     
     public function __construct(QuackObservable $duck) {
-        //$this->observers = [];        
+        $this->observers = [];        
         $this->duck=$duck;
     }
     
     public function registerObserver(Observer $observer): void {
         array_push($this->observers, $observer);
+        //$this->duck->observable->registerObserver($observer);//????
     }
     
     public function notifyObservers(): void {

@@ -14,7 +14,10 @@ include 'Observer.php';
 class Quackologist implements Observer{
     
     public function update(QuackObservable $duck): void{
-        echo 'Quackologist: '.$duck.' just quacked.'; 
+        
+        $classname=explode("\\",get_class($duck));
+        $name = array_pop($classname);                                         
+        echo 'Quackologist: '.$name.' just quacked.<br/>'; 
     }
     
 }

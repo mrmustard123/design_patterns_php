@@ -13,7 +13,7 @@ include 'Observable.php';
 
 class RedheadDuck implements Quackable{
 
-    protected Observable $observable;              
+    public Observable $observable;              
     
     public function __construct() {
         $this->observable= new Observable($this);

@@ -12,7 +12,7 @@ namespace compound_patterns;
 
 class DuckCall implements Quackable{
     
-    protected Observable $observable;
+    public Observable $observable;
     
     public function __construct() {
         $this->observable= new Observable($this);

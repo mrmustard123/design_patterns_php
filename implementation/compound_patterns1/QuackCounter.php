@@ -14,7 +14,7 @@ class QuackCounter implements Quackable{
     
     public Quackable $duck;
     static int $numberOfQuacks;
-    protected Observable $observable;
+    public Observable $observable;
     
     public function __construct(Quackable $duck) {
         $this->duck = $duck;
@@ -30,6 +30,7 @@ class QuackCounter implements Quackable{
 
     public function registerObserver(Observer $observer): void {
         $this->observable->registerObserver($observer);
+        $this->duck->observable->registerObserver($observer);
     }
     
     public function notifyObservers(): void{

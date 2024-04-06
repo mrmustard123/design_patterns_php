@@ -13,7 +13,7 @@ include "Quackable.php";
 
 class MallarDuck implements Quackable{
     
-    protected Observable $observable;
+    public Observable $observable;//el observable tiene un $duck (???)
     
     public function __construct() {
         $this->observable= new Observable($this);
